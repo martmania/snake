@@ -22,8 +22,8 @@ namespace snake
 
             // точка
             Point p = new Point(4, 5, '+');
-            p.Draw();
-            Console.ReadLine();
+            snake Snake = new snake(p, 4, Direction.RIGHT);
+            Snake.Drow();
         }
       
     }
