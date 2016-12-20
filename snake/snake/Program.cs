@@ -9,52 +9,34 @@ namespace snake
 {
     class Program
     {
-        
+
         static void Main(string[] args)
         {
-            Console.SetBufferSize(80, 25);
-            //рамка
-            HorizontaiLine upline = new HorizontaiLine(0,78,0,'+');
-            HorizontaiLine downline = new HorizontaiLine(0, 78, 24, '+');
-            VerticalLine leftline = new VerticalLine(0, 24, 0, '+');
-            VerticalLine rigthline = new VerticalLine(0, 24, 78, '+');
-            upline.Drow();
-            downline.Drow();
-            leftline.Drow();
-            rigthline.Drow();
+            VerticalLine v1 = new VerticalLine(0, 10, 5, '%');
+            Draw(v1);
 
-            // точка
             Point p = new Point(4, 5, '*');
-            snake Snake = new snake(p, 4, Direction.RIGHT);
-            Snake.Drow();
+            Figures fSnake = new snake(p, 4, Direction.RIGHT);
+            Draw(fSnake);
+            snake Snake = (snake)fSnake;
 
-            FoodCreator foodCreator = new FoodCreator(80, 25, '$');
-            Point food = foodCreator.CreateFood();
-            food.Draw();
+            HorizontaiLine h1 = new HorizontaiLine(0, 5, 6, '&');
 
-            while(true)
+            List<Figures> figures = new List<Figures>();
+            figures.Add(fSnake);
+            figures.Add(v1);
+            figures.Add(h1);
+
+            foreach (var f in figures)
             {
-                if (Snake.Eat(food))
-                {
-                    food = foodCreator.CreateFood();
-                    food.Draw();
-                }
-                else
-                {
-                    Snake.Move();
-                }
-                Thread.Sleep(100);
-               
-           
-                if(Console.KeyAvailable)
-                {
-                    ConsoleKeyInfo key = Console.ReadKey();
-                    Snake.HandleKey(key.Key);
-              
-                }
+                f.Draw();
+            }
+        }
+            static void Draw(Figures figures)
+            {
+                figures.Draw();
             }
         }
     }
       
-    }
 
