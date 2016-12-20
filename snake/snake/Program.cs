@@ -9,38 +9,36 @@ namespace snake
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
-           //рамка
-            HorizontaiLine line = new HorizontaiLine(0,78,0,'+');
-            HorizontaiLine line1 = new HorizontaiLine(0, 78, 24, '+');
-            VerticalLine line2 = new VerticalLine(0, 24, 0, '+');
-            VerticalLine line3 = new VerticalLine(0, 24, 78, '+');
-            line.Drow();
-            line1.Drow();
-            line2.Drow();
-            line3.Drow();
+            Console.SetBufferSize(80, 25);
+            //рамка
+            HorizontaiLine upline = new HorizontaiLine(0,78,0,'+');
+            HorizontaiLine downline = new HorizontaiLine(0, 78, 24, '+');
+            VerticalLine leftline = new VerticalLine(0, 24, 0, '+');
+            VerticalLine rigthline = new VerticalLine(0, 24, 78, '+');
+            upline.Drow();
+            downline.Drow();
+            leftline.Drow();
+            rigthline.Drow();
 
             // точка
             Point p = new Point(4, 5, '*');
             snake Snake = new snake(p, 4, Direction.RIGHT);
             Snake.Drow();
-            Snake.Move();
-            Thread.Sleep(300);
-            Snake.Move();
-            Thread.Sleep(300);
-            Snake.Move();
-            Thread.Sleep(300);
-            Snake.Move();
-            Thread.Sleep(300);
-            Snake.Move();
-            Thread.Sleep(300);
-            Snake.Move();
-            Thread.Sleep(300);
-            Snake.Move();
-            Thread.Sleep(300);
-            Snake.Move();
-            Thread.Sleep(300);
+           
+            while (true)
+            {
+                if(Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    Snake.HandleKey(key.Key);
+              
+                }
+                Thread.Sleep(100);
+                Snake.Move();
+            }
         }
       
     }
