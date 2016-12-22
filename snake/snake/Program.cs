@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
-namespace snake
+namespace Snake
 {
     class Program
     {
-
         static void Main(string[] args)
         {
             Console.SetBufferSize(80, 25);
@@ -19,8 +17,8 @@ namespace snake
 
             // Отрисовка точек			
             Point p = new Point(4, 5, '*');
-            snake Snake = new snake(p, 4, Direction.RIGHT);
-            Snake.Draw();
+            Snake snake = new Snake(p, 4, Direction.RIGHT);
+            snake.Draw();
 
             FoodCreator foodCreator = new FoodCreator(80, 25, '$');
             Point food = foodCreator.CreateFood();
@@ -28,29 +26,51 @@ namespace snake
 
             while (true)
             {
-                if (walls.IsHit(Snake) || Snake.IsHitTail())
+                if (walls.IsHit(snake) || snake.IsHitTail())
                 {
                     break;
                 }
-                if (Snake.Eat(food))
+                if (snake.Eat(food))
                 {
                     food = foodCreator.CreateFood();
                     food.Draw();
                 }
                 else
                 {
-                    Snake.Move();
+                    snake.Move();
                 }
 
                 Thread.Sleep(100);
                 if (Console.KeyAvailable)
                 {
                     ConsoleKeyInfo key = Console.ReadKey();
-                    Snake.HandleKey(key.Key);
+                    snake.HandleKey(key.Key);
                 }
             }
+            WriteGameOver();
+            Console.ReadLine();
         }
+
+
+        static void WriteGameOver()
+        {
+            int xOffset = 25;
+            int yOffset = 8;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.SetCursorPosition(xOffset, yOffset++);
+            WriteText("============================", xOffset, yOffset++);
+            WriteText("И Г Р А    О К О Н Ч Е Н А", xOffset + 1, yOffset++);
+            yOffset++;
+            WriteText("Автор: Мария Доронова", xOffset + 2, yOffset++);
+            WriteText("Special for you", xOffset + 1, yOffset++);
+            WriteText("============================", xOffset, yOffset++);
+        }
+
+        static void WriteText(String text, int xOffset, int yOffset)
+        {
+            Console.SetCursorPosition(xOffset, yOffset);
+            Console.WriteLine(text);
+        }
+
     }
 }
-      
-

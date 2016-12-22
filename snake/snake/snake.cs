@@ -4,26 +4,25 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace snake
+namespace Snake
 {
-    class snake : Figures
+    class Snake : Figure
     {
-       public Direction direction;
+        Direction direction;
 
-        public snake(Point tail, int lenght, Direction _direction)
+        public Snake(Point tail, int length, Direction _direction)
         {
             direction = _direction;
             pList = new List<Point>();
-            for (int i=0; i<lenght; i++)
+            for (int i = 0; i < length; i++)
             {
                 Point p = new Point(tail);
                 p.Move(i, direction);
                 pList.Add(p);
             }
-
         }
 
-        internal void Move()
+        public void Move()
         {
             Point tail = pList.First();
             pList.Remove(tail);
@@ -32,8 +31,8 @@ namespace snake
 
             tail.Clear();
             head.Draw();
-        
         }
+
         public Point GetNextPoint()
         {
             Point head = pList.Last();
@@ -42,7 +41,7 @@ namespace snake
             return nextPoint;
         }
 
-        internal bool IsHitTail()
+        public bool IsHitTail()
         {
             var head = pList.Last();
             for (int i = 0; i < pList.Count - 2; i++)
@@ -65,9 +64,8 @@ namespace snake
                 direction = Direction.UP;
         }
 
-        internal bool Eat( Point food)
+        public bool Eat(Point food)
         {
-
             Point head = GetNextPoint();
             if (head.IsHit(food))
             {
@@ -78,6 +76,5 @@ namespace snake
             else
                 return false;
         }
-
     }
 }

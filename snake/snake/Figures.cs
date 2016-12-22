@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace snake
+namespace Snake
 {
-    class Figures
+    class Figure
     {
         protected List<Point> pList;
 
@@ -18,7 +18,7 @@ namespace snake
             }
         }
 
-        internal bool IsHit(Figures figure)
+        internal bool IsHit(Figure figure)
         {
             foreach (var p in pList)
             {
@@ -38,6 +38,4 @@ namespace snake
             return false;
         }
     }
-
-    
 }

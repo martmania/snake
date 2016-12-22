@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace snake
+namespace Snake
 {
     class Point
-   
     {
         public int x;
         public int y;
@@ -15,8 +14,8 @@ namespace snake
 
         public Point()
         {
-           
         }
+
         public Point(int x, int y, char sym)
         {
             this.x = x;
@@ -53,24 +52,24 @@ namespace snake
 
         public bool IsHit(Point p)
         {
-            return p.x == this.x && p.x == this.y;
+            return p.x == this.x && p.y == this.y;
         }
 
         public void Draw()
         {
             Console.SetCursorPosition(x, y);
             Console.Write(sym);
-
         }
+
         public void Clear()
         {
             sym = ' ';
             Draw();
         }
+
         public override string ToString()
         {
-            return x + ", "+ y + ", " +sym;
+            return x + ", " + y + ", " + sym;
         }
-
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace snake
+namespace Snake
 {
     class FoodCreator
     {
@@ -14,9 +14,9 @@ namespace snake
 
         Random random = new Random();
 
-        public FoodCreator(int mapWidht, int mapHeight, char sym)
+        public FoodCreator(int mapWidth, int mapHeight, char sym)
         {
-            this.mapWidht = mapWidht;
+            this.mapWidht = mapWidth;
             this.mapHeight = mapHeight;
             this.sym = sym;
         }
@@ -28,5 +28,4 @@ namespace snake
             return new Point(x, y, sym);
         }
     }
-
 }
